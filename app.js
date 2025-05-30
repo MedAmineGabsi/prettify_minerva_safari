@@ -1,3 +1,10 @@
+//
+//  app.js
+//  Prettify Minerva
+//
+//  Created by Mohamed Amine GABSI on 30/05/2025.
+//
+
 const site = window.location.hostname;
 const path = window.location.pathname;
 
@@ -8,8 +15,8 @@ const Add_Custom_Style = (css) => {
     document.head.appendChild(style);
 };
 
-
-const mcgill_logo = chrome.runtime.getURL("images/mcgill_logo.svg");
+// Safari extension resource URL
+const mcgill_logo = browser.runtime.getURL("images/mcgill_logo.svg");
 
 // Only run custom styles on McGill Minerva portal
 if (site === "horizon.mcgill.ca") {
@@ -107,7 +114,6 @@ if (site === "horizon.mcgill.ca") {
 
         .bgtabon, .bgtaboff, .bgtaboff:hover {
             display: none !important;
-            // background-color: transparent !important;
         }
 
         div.headerwrapperdiv td.tabon, div.headerwrapperdiv td.taboff {
@@ -116,8 +122,6 @@ if (site === "horizon.mcgill.ca") {
             font-weight: normal;
             font-size: 1rem;
             padding: 10px 2px !important;
-            // padding: clamp(8px, 9px, 10px) clamp(12px, 1vw, 20px) !important;
-        
         }
     
         div.headerwrapperdiv td.tabon:hover,
@@ -274,7 +278,7 @@ if (site === "horizon.mcgill.ca") {
         const topBar = newHeader.querySelector("#top-bar");
         const bottomBar = newHeader.querySelector("#bottom-bar");
 
-        const navLinks = document.querySelector("div.headerlinksdiv span.pageheaderlinks2"); 
+        const navLinks = document.querySelector("div.headerlinksdiv span.pageheaderlinks2");
         const utility = document.querySelector("span.pageheaderlinks");
 
 
@@ -307,7 +311,7 @@ if (site === "horizon.mcgill.ca") {
         const isLogin = window.location.href.includes("P_WWWLogin");
 
         // Get title
-        const h2 = document.querySelector('h2, .pageheader, .pagetitle'); 
+        const h2 = document.querySelector('h2, .pageheader, .pagetitle');
         if (!h2 || isMainMenu || isLogin) return;
     
         // Make sure parent td is positioned relatively
@@ -381,6 +385,7 @@ if (site === "horizon.mcgill.ca") {
 
     document.documentElement.style.setProperty('visibility', 'visible', 'important');
 }
+
 
 // main menu
 
@@ -503,7 +508,7 @@ if ((window.location.href.includes("twbkwbis.P_GenMenu?name=bmenu.P_MainMnu")) &
                 };
 
                 li.addEventListener('dragstart', (e) => {
-                    e.dataTransfer.effectAllowed = 'move'; 
+                    e.dataTransfer.effectAllowed = 'move';
                     e.dataTransfer.dropEffect = 'move';
                     e.dataTransfer.setData('text/plain', li.dataset.index);
                 });
@@ -551,7 +556,7 @@ if ((window.location.href.includes("twbkwbis.P_GenMenu?name=bmenu.P_MainMnu")) &
                 localStorage.setItem('myQuickLinks', JSON.stringify(newOrder));
             });
 
-            sidebar.appendChild(list);     
+            sidebar.appendChild(list);
         }
 
         // Append the h3 and button to the flex container
@@ -586,7 +591,7 @@ if ((window.location.href.includes("twbkwbis.P_GenMenu?name=bmenu.P_MainMnu")) &
 
 if ((window.location.href.includes("WWWLogin")) && (site === "horizon.mcgill.ca")) {
 
-    const login_image = chrome.runtime.getURL("images/mcgill_login_image.jpg");
+    const login_image = browser.runtime.getURL("images/mcgill_login_image.jpg");
     const body = document.querySelector("div.pagebodydiv");
 
     const newBody = document.createElement("div");
@@ -710,6 +715,8 @@ if ((window.location.href.includes("WWWLogin")) && (site === "horizon.mcgill.ca"
         });
 
     const pagetitle = document.querySelector('div.pagetitlediv');
-    pagetitle.remove();
+    if (pagetitle) {
+        pagetitle.remove();
+    }
     
 }
