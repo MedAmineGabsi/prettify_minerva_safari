@@ -1,8 +1,8 @@
 //
 //  app.js
 //  Prettify Minerva
-//
-//  Created by Mohamed Amine GABSI on 30/05/2025.
+//  Created by Vassili Proko
+//  Edited by Mohamed Amine GABSI on 30/05/2025.
 //
 
 const site = window.location.hostname;
